@@ -197,3 +197,54 @@ Para compilar manualmente:
 ```bash
 npx tsc
 ```
+
+# EA Exercise - REST API
+
+## Exercici
+
+### 1. Evolució del Model (Mongoose + TypeScript)
+
+S'ha modificat l'esquema de `Organization` per incloure un camp `users`, que és un vector d'IDs (`Schema.Types.ObjectId`) referenciant la col·lecció d'Usuaris.
+
+També s'ha actualitzat la interfície `IOrganization` a TypeScript per mantenir la seguretat de tipus.
+
+---
+
+### 2. Implementació de la Service Layer
+
+No es permet utilitzar codi de Mongoose dins dels controladors.
+
+S'ha creat una funció al fitxer:
+
+Aquesta funció:
+
+- Utilitza `.populate()` per carregar les dades dels usuaris associats.
+- Utilitza `.lean()` per retornar un objecte JavaScript pla (millora de rendiment).
+
+---
+
+### 3. Nou Endpoint RESTful
+
+S'ha implementat la ruta:
+
+Aquest endpoint retorna la llista d'usuaris associats a una organització.
+
+---
+
+### 4. Documentació amb Swagger (OpenAPI)
+
+El nou endpoint ha estat registrat a les anotacions de Swagger per tal que aparegui documentat a la interfície Swagger UI.
+
+---
+
+## Repositori base
+
+Aquest exercici s'ha desenvolupat a partir del següent repositori:
+
+https://github.com/rocmeseguer/EA-Exercise-RestAPI.git
+
+---
+
+## Assistència amb IA
+
+S'ha utilitzat assistència d'IA per ajudar en l'ordre dels passos de la resolució i en alguns dubtes tècnics durant el desenvolupament.
