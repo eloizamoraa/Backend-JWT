@@ -206,53 +206,17 @@ Para compilar manualmente:
 npx tsc
 ```
 
-# EA Exercise - REST API
+# EA Exercise - JWT
+# Tasques completades:
+Estendre el *payload* del JWT per incloure informació d'autorització per rols.
+Crear *middleware* de verificació de rols al servidor.
+Restringir l'accés a endpoints crítics segons el privilegi de l'usuari.
+Afegir el component
 
-## Exercici
-
-### 1. Evolució del Model (Mongoose + TypeScript)
-
-S'ha modificat l'esquema de `Organization` per incloure un camp `users`, que és un vector d'IDs (`Schema.Types.ObjectId`) referenciant la col·lecció d'Usuaris.
-
-També s'ha actualitzat la interfície `IOrganization` a TypeScript per mantenir la seguretat de tipus.
-
----
-
-### 2. Implementació de la Service Layer
-
-No es permet utilitzar codi de Mongoose dins dels controladors.
-
-S'ha creat una funció al fitxer:
-
-Aquesta funció:
-
-- Utilitza `.populate()` per carregar les dades dels usuaris associats.
-- Utilitza `.lean()` per retornar un objecte JavaScript pla (millora de rendiment).
-
----
-
-### 3. Nou Endpoint RESTful
-
-S'ha implementat la ruta:
-
-Aquest endpoint retorna la llista d'usuaris associats a una organització.
-
----
-
-### 4. Documentació amb Swagger (OpenAPI)
-
-El nou endpoint ha estat registrat a les anotacions de Swagger per tal que aparegui documentat a la interfície Swagger UI.
-
----
-
-## Repositori base
-
-Aquest exercici s'ha desenvolupat a partir del següent repositori:
-
-https://github.com/rocmeseguer/EA-Exercise-RestAPI.git
-
----
-
-## Assistència amb IA
-
-S'ha utilitzat assistència d'IA (ChatGpt) per ajudar en l'ordre dels passos de la resolució i en alguns dubtes tècnics durant el desenvolupament.
+# Preguntes de reflexió:
+1. Què passaria si un usuari canvia el seu rol a "admin" manualment dins del token al navegador? El servidor ho detectaria?
+Resposta: Si ho detectaria ja que no esta canviant la "firma",només el payload.
+2. Per què és millor guardar el rol al token en lloc de consultar la base de dades a cada petició a una ruta protegida?
+Resposta: Millor rendiment i escalabilitat.
+# Ús de la IA:
+He utilitzat Copilot per compendre pas a pas el que anava fent i així entendre l'us i l'aplicació de JWT.
